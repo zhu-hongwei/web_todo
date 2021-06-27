@@ -1,31 +1,45 @@
 <template>
   <div class="container">
-    <div>has done {{ isDone }} / all {{ all }}</div>
-    <div class="but-box" v-if="isDone > 0">
-      <button @click="clear_all_has_done">clear has done</button>
+    <div>has done {{ done }} / all {{ list.length }}</div>
+    <div class="but-box" v-if="done > 0">
+      <button @click="clear">clear has done</button>
     </div>
   </div>
 </template>
 
 <script>
-import { defineComponent, ref } from "vue";
+import { defineComponent, ref, computed } from "vue";
 
 export default defineComponent({
   name: "navFooter",
-  setup(props, ctx) {
-    let isDone = ref(1);
-    let all = ref(3);
+  props: {
+    list: {
+      type: Array,
+      required: true,
+    },
+  },
 
-    let clear_all_has_done = () => {
-      console.log('clear_all_has_done')
-    }
+  setup(props, ctx) {
+
+    let done = computed(() => {
+      // 过滤已完成的
+      let arr = props.list.filter((item) => {
+        return item.done;
+      });
+
+      return arr.length;
+    });
+
+    // 清除已完成
+    let clear = () => {
+      console.log("clear");
+      ctx.emit('clear')
+    };
 
     return {
-      isDone,
-      all,
+      done,
 
-      clear_all_has_done,
-
+      clear,
     };
   },
 });

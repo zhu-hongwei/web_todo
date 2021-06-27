@@ -3,12 +3,11 @@
     <h1>this is Child components</h1>
     <div>父组件传递过来的数据：{{ father }}</div>
     <button @click="sendToFather">传值给父组件</button>
-
   </div>
 </template>
  
 <script>
-import { defineComponent, ref } from "vue";
+import { defineComponent, onMounted, ref } from "vue";
 
 export default defineComponent({
   name: "Child",
@@ -25,17 +24,23 @@ export default defineComponent({
   setup(props, ctx) {
     console.log(props, props.father);
 
-    let childMsg = ref('我是子组件的数据')
+    let childMsg = ref("我是子组件的数据");
     let sendToFather = () => {
       // 而是通过 ctx.emit 分发事件
       // emit 第一个参数是事件名称  第二个参数是传递的数据
 
-      ctx.emit('sendToFather', childMsg.value)
-    }
+      ctx.emit("sendToFather", childMsg.value);
+    };
+
+    onMounted(() => {
+      ctx.emit("sendToFather", childMsg.value);
+
+    });
 
     return {
-      childMsg
-    }
+      childMsg,
+      sendToFather,
+    };
   },
 });
 </script>

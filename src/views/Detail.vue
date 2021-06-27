@@ -17,8 +17,8 @@ export default defineComponent({
 
   setup() {
     let father = ref("father");
-    let sendToFather = () => {
-      
+    let sendToFather = (val) => {
+      console.log(val);
     };
 
     return {

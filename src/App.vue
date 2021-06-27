@@ -33,10 +33,15 @@ button {
   border: none;
   padding: 0 10px;
   border-radius: 30px;
-  color: #f40;
+  color: #07c160;
+  border: 2px solid #ffffff00;
   background-color: #f5f5f7;
   &:hover {
+    // border: 2px solid #07c160;
     cursor: pointer;
+  }
+  &:active {
+    opacity: .6;
   }
 }
 </style>

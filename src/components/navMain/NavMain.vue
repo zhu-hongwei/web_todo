@@ -3,39 +3,37 @@
     <div class="list-item" v-for="(item, index) in list" :key="index">
       <input type="checkbox" v-model="item.done" />
       {{ item.title }}
-      <button class="del" @click="del_a_list_item(item, index)">del</button>
+      <button class="del" @click="del(item, index)">del</button>
     </div>
   </div>
-</template>
+</template> 
 
 <script>
 import { defineComponent, ref } from "vue";
+import { useStore } from "vuex";
 
 export default defineComponent({
   name: "navMain",
-  setup(props, ctx) {
-    let list = ref([
-      {
-        title: "eat food",
-        done: false,
-      },
-      {
-        title: "drink",
-        done: false,
-      },
-      {
-        title: "haha",
-        done: false,
-      },
-    ]);
+  props: {
+    list: {
+      type: Array,
+      required: true,
+    },
+  },
+  // 专门用来放分发事件的属性名字
+  emits: ['delOneTodo'],
 
-    let del_a_list_item = (item, index) => {
+  setup(props, ctx) {
+    let store = useStore()
+
+    // 删除任务
+    let del = (item, index) => {
       console.log(item, index);
+      ctx.emit('delOneTodo', index)
     };
 
     return {
-      list,
-      del_a_list_item,
+      del,
     };
   },
 });

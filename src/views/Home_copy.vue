@@ -1,9 +1,8 @@
 <template>
   <div class="home">
-    <nav-header @add="add"></nav-header>
-    <nav-main :list="list"></nav-main>
-    <nav-footer :list="list"></nav-footer>
-
+    <nav-header></nav-header>
+    <nav-main></nav-main>
+    <nav-footer></nav-footer>
     <button class="about" @click="goto">about</button>
   </div>
 </template>
@@ -12,11 +11,19 @@
 import NavHeader from "@/components/navHeader/NavHeader";
 import NavMain from "@/components/navMain/NavMain";
 import NavFooter from "@/components/navFooter/NavFooter";
-import { defineComponent, ref, computed } from "vue";
+
+import {
+  defineComponent,
+  ref,
+  onMounted,
+  onUnmounted,
+  
+  reactive,
+  toRefs,
+  computed,
+} from "vue";
 import { useStore } from "vuex";
 import { useRouter, useRoute } from "vue-router";
-// import { useStore } from "vuex";
-// import { useRouter, useRoute } from "vue-router";
 
 export default defineComponent({
   name: "Home",
@@ -27,38 +34,40 @@ export default defineComponent({
   },
 
   setup(props, ctx) {
+    let data = reactive({
+      name: "j",
+      age: 10,
+    });
+
     let store = useStore();
+    let list = computed(() => {
+      return store.state.list;
+    });
+    console.log(store);
+
     // router 是全局路由对象
     let router = useRouter();
     console.log("home router", router);
+
     // route 是当前路由对象
     let route = useRoute();
     console.log("home route", route);
 
-    let value = ref("");
+    // query 传递过来的参数都是字符型的类型
+    console.log("route.query", route.query);
 
-    let list = computed(() => {
-      return store.state.list;
+    let name = ref("name");
+    let obj = ref({
+      a: "a",
+      b: 1,
+      c: [0, 0, 0, 0],
     });
 
-    let add = (val) => {
-      value.value = val;
-      console.log(val);
-
-      store.commit("addOneTodo", {
-        title: value.value,
-        done: false,
-      });
-    };
-
-    let del = (val) => {
-      console.log(val);
-      store.commit("delOneTodo", val);
-    };
-
-    let clear = (val) => {
-      store.commit("clear", val);
-    };
+    // 组件卸载时的生命周期
+    // do: 清除定时器 清除闭包函数
+    onUnmounted(() => {
+      console.log("onUnmounted");
+    });
 
     // 跳转 about 页
     let goto = () => {
@@ -72,20 +81,22 @@ export default defineComponent({
 
         name: "About",
         params: {
-          name: "name",
-          num: 1,
+          name: name.value,
+          obj: JSON.stringify(obj.value),
         },
       });
     };
 
     return {
-      value,
+      ...toRefs(data), // es6
       list,
-      add,
-      del,
-      clear,
-
+      store,
+      router,
+      route,
       goto,
+
+      name,
+      obj,
     };
   },
 });

@@ -14,7 +14,7 @@ export default createStore({
         done: false,
       },
       {
-        title: "yi ye",
+        title: "code",
         done: true,
       },
     ]
@@ -31,7 +31,7 @@ export default createStore({
       state.list.splice(payload, 1)
     },
 
-    clearAllHasDoneTodo(state, payload) {
+    clear(state, payload) {
       // 把过滤之后的数组传进来
       state.list = payload
     }
