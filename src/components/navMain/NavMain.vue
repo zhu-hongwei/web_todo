@@ -10,7 +10,6 @@
 
 <script>
 import { defineComponent, ref } from "vue";
-import { useStore } from "vuex";
 
 export default defineComponent({
   name: "navMain",
@@ -21,15 +20,14 @@ export default defineComponent({
     },
   },
   // 专门用来放分发事件的属性名字
-  emits: ['delOneTodo'],
+  emits: ['del'],
 
   setup(props, ctx) {
-    let store = useStore()
 
     // 删除任务
     let del = (item, index) => {
-      console.log(item, index);
-      ctx.emit('delOneTodo', index)
+      // console.log(item, index);
+      ctx.emit('del', index)
     };
 
     return {

@@ -1,8 +1,8 @@
 <template>
   <div class="home">
     <nav-header @add="add"></nav-header>
-    <nav-main :list="list"></nav-main>
-    <nav-footer :list="list"></nav-footer>
+    <nav-main :list="list" @del="del"></nav-main>
+    <nav-footer :list="list" @clear="clear"></nav-footer>
 
     <button class="about" @click="goto">about</button>
   </div>

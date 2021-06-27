@@ -20,7 +20,6 @@ export default defineComponent({
   },
 
   setup(props, ctx) {
-
     let done = computed(() => {
       // 过滤已完成的
       let arr = props.list.filter((item) => {
@@ -33,7 +32,13 @@ export default defineComponent({
     // 清除已完成
     let clear = () => {
       console.log("clear");
-      ctx.emit('clear')
+
+      // 过滤未完成的
+      let arr = props.list.filter((item) => {
+        return item.done === false;
+      });
+
+      ctx.emit("clear", arr);
     };
 
     return {
