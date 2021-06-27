@@ -1,16 +1,31 @@
 <template>
   <div>
     <h1>this is Detail components</h1>
+    <child :father="father" @sendToFather="sendToFather"></child>
   </div>
 </template>
 
 <script>
 import { defineComponent, ref } from "vue";
-import Child from '../components/child/Child'
+import child from "../components/child/Child";
 
 export default defineComponent({
   name: "Detail",
-  setup() {},
+  components: {
+    child,
+  },
+
+  setup() {
+    let father = ref("father");
+    let sendToFather = () => {
+      
+    };
+
+    return {
+      father,
+      sendToFather,
+    };
+  },
 });
 </script>
 
