@@ -1,16 +1,17 @@
 <template>
   <div>
-    <h1>this is Detail components</h1>
+    <h1>this is Child components</h1>
   </div>
 </template>
 
 <script>
 import { defineComponent, ref } from "vue";
+
 export default defineComponent({
-  name: "Detail",
+  name: "Child",
   setup() {},
 });
 </script>
 
 <style>
-</style>
+</style> 
