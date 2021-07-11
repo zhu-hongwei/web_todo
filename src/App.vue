@@ -14,10 +14,17 @@
 
 input {
   height: 50px;
-  border: none;
+  line-height: 40px;
+
   padding: 0 5px;
+  margin-right: 5px;
+
+  border: none;
   border-radius: 50px;
   background-color: #f5f5f7;
+
+  font-size: medium;
+  // font-weight: ;
 }
 
 input:focus {

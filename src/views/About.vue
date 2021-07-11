@@ -1,8 +1,8 @@
 <template>
   <div class="about">
     <div>about page</div>
-    {{ name }}
-    {{ obj }}
+    <!-- {{ name }} -->
+    <!-- {{ obj }} -->
   </div>
 </template>
 
@@ -29,8 +29,8 @@ export default defineComponent({
     let obj = ref({});
 
     onMounted(() => {
-      name.value = route.params.name;
-      obj.value = JSON.parse(route.params.obj);
+      // name.value = route.params.name;
+      // obj.value = JSON.parse(route.params.obj);
     });
 
     return {
@@ -42,3 +42,7 @@ export default defineComponent({
   },
 });
 </script>
+
+<style lang="sass" scoped>
+
+</style>

@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <nav-header @add="add"></nav-header>
-    <nav-main :list="list" @del="del"></nav-main>
+    <nav-main :list="list" @del="del" @tapListItem="tapListItem"></nav-main>
     <nav-footer :list="list" @clear="clear"></nav-footer>
 
     <button class="about" @click="goto">about</button>
@@ -56,6 +56,11 @@ export default defineComponent({
       store.commit("delOneTodo", val);
     };
 
+    let tapListItem = (val) => {
+      console.log(val);
+      store.commit("tapListItem", val);
+    };
+
     let clear = (val) => {
       store.commit("clear", val);
     };
@@ -82,6 +87,7 @@ export default defineComponent({
       value,
       list,
       add,
+      tapListItem,
       del,
       clear,
 
@@ -104,7 +110,7 @@ export default defineComponent({
     position: absolute;
     right: 20px;
     bottom: 20px;
-    color: #2db7f5;
+    color: #0079ff;
   }
 }
 </style>

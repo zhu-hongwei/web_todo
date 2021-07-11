@@ -31,6 +31,13 @@ export default createStore({
       state.list.splice(payload, 1)
     },
 
+    tapListItem(state, payload) {
+      // 做个已完成 排序好了
+      // setTimeout(function () {
+      //   state.list.splice(payload, 1)
+      // }, 3000)
+    },
+
     clear(state, payload) {
       // 把过滤之后的数组传进来
       state.list = payload

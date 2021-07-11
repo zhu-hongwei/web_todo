@@ -1,6 +1,6 @@
 <template>
-  <div class="container">
-    <div>has done {{ done }} / all {{ list.length }}</div>
+  <div class="h_footer">
+    <div class="h_footer_tip"> 已完成 {{ done }} / 全部 {{ list.length }}</div>
     <div class="but-box" v-if="done > 0">
       <button @click="clear">clear has done</button>
     </div>
@@ -51,7 +51,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-.container {
+.h_footer {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -59,6 +59,7 @@ export default defineComponent({
 
   width: 100%;
   margin-top: 20px;
+  
   .but-box {
     margin-left: 10px;
   }
