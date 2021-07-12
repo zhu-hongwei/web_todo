@@ -57,7 +57,7 @@ export default defineComponent({
 
     return {
       isDone,
-      // tapListItem,
+      tapListItem,
       del,
     };
   },
