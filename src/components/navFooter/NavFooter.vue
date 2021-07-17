@@ -1,8 +1,8 @@
 <template>
   <div class="h_footer">
-    <div class="h_footer_tip"> 已完成 {{ done }} / 全部 {{ list.length }}</div>
+    <div class="h_footer_tip">已完成 {{ done }} / 全部 {{ list.length }}</div>
     <div class="but-box" v-if="done > 0">
-      <button @click="clear"> 清除已完成 </button>
+      <button @click="clear">清除已完成</button>
     </div>
   </div>
 </template>
@@ -20,6 +20,7 @@ export default defineComponent({
   },
 
   setup(props, ctx) {
+    //
     let done = computed(() => {
       // 过滤已完成的
       let arr = props.list.filter((item) => {
@@ -43,7 +44,6 @@ export default defineComponent({
 
     return {
       done,
-
       clear,
     };
   },
@@ -61,7 +61,7 @@ export default defineComponent({
   height: 50px;
   // background-color: red;
   margin-top: 20px;
-  
+
   .but-box {
     margin-left: 10px;
   }

@@ -5,7 +5,6 @@
     <nav-footer :list="list" @clear="clear"></nav-footer>
 
     <!-- · -->
-    <div class="time">{{ time }}</div>
     <button class="more" @click="goto">: - )</button>
   </div>
 </template>
@@ -15,7 +14,7 @@ import NavHeader from "@/components/navHeader/NavHeader";
 import NavMain from "@/components/navMain/NavMain";
 import NavFooter from "@/components/navFooter/NavFooter";
 
-import { defineComponent, ref, computed } from "vue";
+import { defineComponent, ref, computed, onMounted } from "vue";
 import { useStore } from "vuex";
 import { useRouter, useRoute } from "vue-router";
 // import { useStore } from "vuex";
@@ -36,7 +35,7 @@ export default defineComponent({
   },
 
   setup(props, ctx) {
-    let time = ref("");
+
     let store = useStore();
     // router 是全局路由对象
     let router = useRouter();

@@ -1,8 +1,22 @@
 <template>
-  <div class="about">
+  <div class="more">
     <div>more page</div>
     <!-- {{ name }} -->
     <!-- {{ obj }} -->
+    <div class="list">
+      <div class="list-item">
+        <!-- <img src="" alt=""> -->
+        <div class="title">版本记录</div>
+        <div class="right">></div>
+        <!-- <img src="" alt=""> -->
+      </div>
+
+      <div class="list-item">
+        <!-- <img src="" alt=""> -->
+        <div class="title"></div>
+        <!-- <img src="" alt=""> -->
+      </div>
+    </div>
   </div>
 </template>
 
@@ -43,6 +57,16 @@ export default defineComponent({
 });
 </script>
 
-<style lang="sass" scoped>
+<style lang="scss" scoped>
+.more {
 
+}
+.list {
+  margin: 10px;
+}
+.list-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
 </style>
