@@ -6,7 +6,6 @@
       v-for="(item, index) in list"
       :key="index"
     >
-
       <!-- 替换 input checkbox 默认丑丑的方框 -->
       <span>
         <input
@@ -79,7 +78,7 @@ export default defineComponent({
 .list_item_done {
   opacity: 0.2;
   transition: opacity 1s;
-// height: 0;
+  // height: 0;
   // transition: all 1s;
   // transition: height 3s;
 }
@@ -99,8 +98,10 @@ export default defineComponent({
   //   opacity: 1 !important;
   // }
   input {
-    margin-right: 5px;
+    margin-right: 0px;
     border-radius: 50%;
+    width: 0px;
+    height: 0px;
   }
   button {
     position: absolute;
@@ -138,7 +139,7 @@ export default defineComponent({
 }
 
 .list-item-title {
-  margin-left: 10px;
+  margin-left: 35px;
 }
 
 .Checkbox {
@@ -148,7 +149,7 @@ export default defineComponent({
 
 .Checkbox + label {
   position: absolute;
-  left: -6.5px;
+  // left: -6.5px;
 
   width: 20px;
   height: 20px;
