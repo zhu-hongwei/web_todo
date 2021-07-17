@@ -2,7 +2,7 @@
   <div class="h_footer">
     <div class="h_footer_tip"> 已完成 {{ done }} / 全部 {{ list.length }}</div>
     <div class="but-box" v-if="done > 0">
-      <button @click="clear">clear has done</button>
+      <button @click="clear"> 清除已完成 </button>
     </div>
   </div>
 </template>
@@ -58,6 +58,8 @@ export default defineComponent({
   justify-content: center;
 
   width: 100%;
+  height: 50px;
+  // background-color: red;
   margin-top: 20px;
   
   .but-box {

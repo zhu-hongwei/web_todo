@@ -1,6 +1,6 @@
 <template>
   <div class="about">
-    <div>about page</div>
+    <div>more page</div>
     <!-- {{ name }} -->
     <!-- {{ obj }} -->
   </div>

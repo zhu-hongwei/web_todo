@@ -4,7 +4,9 @@
     <nav-main :list="list" @del="del" @tapListItem="tapListItem"></nav-main>
     <nav-footer :list="list" @clear="clear"></nav-footer>
 
-    <button class="about" @click="goto">about</button>
+    <!-- · -->
+    <div class="time">{{ time }}</div>
+    <button class="more" @click="goto">: - )</button>
   </div>
 </template>
 
@@ -12,6 +14,7 @@
 import NavHeader from "@/components/navHeader/NavHeader";
 import NavMain from "@/components/navMain/NavMain";
 import NavFooter from "@/components/navFooter/NavFooter";
+
 import { defineComponent, ref, computed } from "vue";
 import { useStore } from "vuex";
 import { useRouter, useRoute } from "vue-router";
@@ -19,7 +22,13 @@ import { useRouter, useRoute } from "vue-router";
 // import { useRouter, useRoute } from "vue-router";
 
 export default defineComponent({
+  // 组件名称
   name: "Home",
+
+  // 接收父组件的数据
+  props: {},
+
+  // 定义子组件
   components: {
     NavHeader,
     NavMain,
@@ -27,6 +36,7 @@ export default defineComponent({
   },
 
   setup(props, ctx) {
+    let time = ref("");
     let store = useStore();
     // router 是全局路由对象
     let router = useRouter();
@@ -56,16 +66,16 @@ export default defineComponent({
       store.commit("delOneTodo", val);
     };
 
-    let tapListItem = (val) => {
-      console.log(val);
-      store.commit("tapListItem", val);
+    let tapListItem = (item, index) => {
+      console.log(item, index);
+      store.commit("tapListItem", item, index);
     };
 
     let clear = (val) => {
       store.commit("clear", val);
     };
 
-    // 跳转 about 页
+    // 跳转 more 页
     let goto = () => {
       // 跳转路由
       // push 函数里面可以传入跳转的路径
@@ -73,13 +83,13 @@ export default defineComponent({
       // forward: 去到下一页
       // go(整数)   +前进   -后退
       router.push({
-        // path: '/about'
+        path: "/More",
 
-        name: "About",
-        params: {
-          name: "name",
-          num: 1,
-        },
+        // name: "More",
+        // params: {
+        //   name: "name",
+        //   num: 1,
+        // },
       });
     };
 
@@ -100,17 +110,23 @@ export default defineComponent({
 <style lang="scss" scoped>
 .home {
   position: relative;
+  min-height: 100%;
   height: 100%;
 
   display: flex;
   flex-direction: column;
   // justify-content: center;
   align-items: center;
-  .about {
+
+  .more {
     position: absolute;
     right: 20px;
     bottom: 20px;
     color: #0079ff;
+
+    // margin: 10px 0;
+    // height: 50px;
+    // background-color: #0079ff;
   }
 }
 </style>

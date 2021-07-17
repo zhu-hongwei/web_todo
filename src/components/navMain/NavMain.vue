@@ -2,21 +2,22 @@
   <div class="list">
     <div
       class="list-item"
-      :class="{ list_item_done: isDone }"
+      :class="{ list_item_done: item.done }"
       v-for="(item, index) in list"
       :key="index"
     >
+
       <!-- 替换 input checkbox 默认丑丑的方框 -->
       <span>
         <input
           class="Checkbox"
-          id="check1"
+          :id="'list-item-' + index"
           type="checkbox"
           v-model="item.done"
         />
 
-        <!-- <input type="checkbox" class="Checkbox" id="check1" /> -->
-        <label for="check1" @click.stop="tapListItem(item, index)"></label>
+        <label :for="'list-item-' + index"></label>
+        <!-- <label for="check1" @click.stop="tapListItem(item, index)"></label> -->
         <span class="list-item-title">{{ item.title }}</span>
       </span>
 
@@ -30,12 +31,14 @@ import { defineComponent, ref } from "vue";
 
 export default defineComponent({
   name: "navMain",
+
   props: {
     list: {
       type: Array,
       required: true,
     },
   },
+
   // 专门用来放分发事件的属性名字
   emits: ["del", "tapListItem"],
 
@@ -44,14 +47,13 @@ export default defineComponent({
 
     // 点击某一条 标记已完成
     let tapListItem = (item, index) => {
-      isDone.value = true;
-
-      ctx.emit("tapListItem", index);
+      console.log(item, index);
+      ctx.emit("tapListItem", item, index);
     };
 
     // 删除任务
     let del = (item, index) => {
-      // console.log(item, index);
+      console.log(item, index);
       ctx.emit("del", index);
     };
 
@@ -75,16 +77,15 @@ export default defineComponent({
 }
 
 .list_item_done {
-  opacity: 0.1;
-  // height: 0;
-
-  transition: opacity 3s;
+  opacity: 0.2;
+  transition: opacity 1s;
+// height: 0;
+  // transition: all 1s;
   // transition: height 3s;
 }
 
 .list-item {
   position: relative;
-  // margin: 20px;
   padding: 0 20px;
   border-radius: 50px;
   height: 50px;
@@ -94,25 +95,34 @@ export default defineComponent({
   // justify-content: center;
   align-items: center;
   cursor: pointer;
+  // .del {
+  //   opacity: 1 !important;
+  // }
   input {
     margin-right: 5px;
     border-radius: 50%;
   }
   button {
     position: absolute;
-    right: 20px;
-    // margin-left: 20px;
+    right: 10px;
+    margin-left: 20px;
+    background-color: #f5f5f7;
+    opacity: 1 !important;
 
     display: none;
     z-index: 99; // why?
     &:hover {
       background-color: #fff;
+      // transition: background-color 1s;
     }
   }
   &:hover {
     background-color: #f5f5f7;
+    // transition: background-color 1s;
+
     button {
       display: block;
+      // transition: all 1s;
     }
   }
 }

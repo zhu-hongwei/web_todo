@@ -6,15 +6,15 @@ export default createStore({
   state: {
     list: [
       {
-        title: "eat food",
+        title: "今日待办事项",
         done: false,
       },
       {
-        title: "drink",
+        title: "未完成",
         done: false,
       },
       {
-        title: "code",
+        title: "已完成",
         done: true,
       },
     ]
@@ -23,15 +23,24 @@ export default createStore({
   // 同步修改 state 都是方法，不能有 定时器，请求等异步操作
   // 第一个参数 state 第二个参数是需要修改的值
   mutations: {
+
     addOneTodo(state, payload) {
+      console.log('store index.js addOneTodo 新增一条', state, payload);
       state.list.push(payload)
     },
 
     delOneTodo(state, payload) {
+      console.log('store index.js delOneTodo 删除一条', state, payload);
       state.list.splice(payload, 1)
     },
 
     tapListItem(state, payload) {
+      console.log('store index.js tapListItem 反转 状态', state, payload);
+      console.log(payload.title, payload.done);
+      
+      payload.done = !(payload.done)
+      // return
+      // state.list[payload].done = !(state.list[payload].done)
       // 做个已完成 排序好了
       // setTimeout(function () {
       //   state.list.splice(payload, 1)

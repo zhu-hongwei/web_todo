@@ -1,5 +1,5 @@
 <template>
-  <div class="input-box">
+  <div class="input-box"> 
     <input type="text" v-model="value" @keydown.enter="push_a_list_item" />
   </div>
 </template>
@@ -10,16 +10,14 @@ import { defineComponent, ref } from "vue";
 export default defineComponent({
   name: "navHeader",
 
-
   setup(props, ctx) {
     let value = ref("");
 
     let push_a_list_item = () => {
       // 把输入框的内容传递给父组件
-      ctx.emit("add", value.value);
       console.log(value.value);
+      ctx.emit("add", value.value);
       value.value = ''
-
     };
 
     return {
