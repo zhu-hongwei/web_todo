@@ -60,7 +60,7 @@ export default defineComponent({
   width: 100%;
   height: 50px;
   // background-color: red;
-  margin-top: 20px;
+  margin: 20px 0;
 
   .but-box {
     margin-left: 10px;

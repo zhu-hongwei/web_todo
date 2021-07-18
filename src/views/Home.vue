@@ -35,8 +35,12 @@ export default defineComponent({
   },
 
   setup(props, ctx) {
-
     let store = useStore();
+    console.log('Home store', store);
+    let list = computed(() => {
+      return store.state.list;
+    });
+
     // router 是全局路由对象
     let router = useRouter();
     console.log("home router", router);
@@ -46,9 +50,6 @@ export default defineComponent({
 
     let value = ref("");
 
-    let list = computed(() => {
-      return store.state.list;
-    });
 
     let add = (val) => {
       value.value = val;
@@ -109,8 +110,8 @@ export default defineComponent({
 <style lang="scss" scoped>
 .home {
   position: relative;
-  min-height: 80%;
-  height: 80%;
+  // min-height: 100%;
+  height: 100vh;
 
   display: flex;
   flex-direction: column;

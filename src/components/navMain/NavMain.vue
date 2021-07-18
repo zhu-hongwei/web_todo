@@ -78,9 +78,6 @@ export default defineComponent({
 .list_item_done {
   opacity: 0.2;
   transition: opacity 1s;
-  // height: 0;
-  // transition: all 1s;
-  // transition: height 3s;
 }
 
 .list-item {
@@ -91,18 +88,24 @@ export default defineComponent({
 
   display: flex;
   flex-direction: row;
-  // justify-content: center;
   align-items: center;
   cursor: pointer;
-  // .del {
-  //   opacity: 1 !important;
-  // }
-  input {
-    margin-right: 0px;
-    border-radius: 50%;
-    width: 0px;
-    height: 0px;
+
+  &:hover {
+    background-color: #f5f5f7;
+
+    button {
+      display: block;
+    }
   }
+
+  input {
+    margin-right: 0;
+    border-radius: 50%;
+    width: 0;
+    height: 0;
+  }
+
   button {
     position: absolute;
     right: 10px;
@@ -114,18 +117,9 @@ export default defineComponent({
     z-index: 99; // why?
     &:hover {
       background-color: #fff;
-      // transition: background-color 1s;
     }
   }
-  &:hover {
-    background-color: #f5f5f7;
-    // transition: background-color 1s;
 
-    button {
-      display: block;
-      // transition: all 1s;
-    }
-  }
 }
 
 .list-item > span {
@@ -143,13 +137,11 @@ export default defineComponent({
 }
 
 .Checkbox {
-  // margin-right: 50px;
   background-color: red !important;
 }
 
 .Checkbox + label {
   position: absolute;
-  // left: -6.5px;
 
   width: 20px;
   height: 20px;
