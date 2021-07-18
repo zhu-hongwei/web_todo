@@ -5,7 +5,7 @@
     <nav-footer :list="list" @clear="clear"></nav-footer>
 
     <!-- · -->
-    <button class="more" @click="goto">: - )</button>
+    <button class="more" @click="goto_more">:-)</button>
   </div>
 </template>
 
@@ -14,7 +14,7 @@ import NavHeader from "@/components/navHeader/NavHeader";
 import NavMain from "@/components/navMain/NavMain";
 import NavFooter from "@/components/navFooter/NavFooter";
 
-import { defineComponent, ref, computed, onMounted } from "vue";
+import { defineComponent, ref, computed, onMounted, onUnmounted } from "vue";
 import { useStore } from "vuex";
 import { useRouter, useRoute } from "vue-router";
 // import { useStore } from "vuex";
@@ -34,22 +34,36 @@ export default defineComponent({
     NavFooter,
   },
 
+  // 组件创建的过程
   setup(props, ctx) {
+    onMounted(() => {
+      // 组件挂载的过程
+      // 数据 dom...
+      // 发请求
+      // 数据初始化的操作：接受路由传递参数
+    });
+
+    onUnmounted(()=>{
+      // 组件卸载时的生命周期
+      // 清除定时器 清除闭包函数...
+      console.log('Home onUnmounted');
+    })
+
     let store = useStore();
-    console.log('Home store', store);
+    console.log("Home store", store);
     let list = computed(() => {
       return store.state.list;
     });
 
     // router 是全局路由对象
     let router = useRouter();
-    console.log("home router", router);
+    console.log("Home router", router);
+
     // route 是当前路由对象
     let route = useRoute();
-    console.log("home route", route);
+    console.log("Home route", route);
 
     let value = ref("");
-
 
     let add = (val) => {
       value.value = val;
@@ -76,19 +90,31 @@ export default defineComponent({
     };
 
     // 跳转 more 页
-    let goto = () => {
+    let goto_more = () => {
       // 跳转路由
       // push 函数里面可以传入跳转的路径
       // back: 回退到上一页
       // forward: 去到下一页
       // go(整数)   +前进   -后退
-      router.push({
-        path: "/More",
 
-        // name: "More",
+      router.push({
+        // query 传参 path, name 都可以
+        // 参数会在地址栏显示
+        // 刷新之后还在
+        name: "More",
+        query: {
+          name: "query",
+          num: 1,
+          obj: JSON.stringify({ test: "test" }),
+        },
+
+        // params 传参只能用 name
+        // 参数不会在地址栏显示
+        // 刷新之后就没有了
         // params: {
-        //   name: "name",
+        //   name: "params",
         //   num: 1,
+        //   obj: JSON.stringify({ test: "test" }),
         // },
       });
     };
@@ -101,7 +127,7 @@ export default defineComponent({
       del,
       clear,
 
-      goto,
+      goto_more,
     };
   },
 });

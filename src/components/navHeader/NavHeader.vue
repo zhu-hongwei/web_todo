@@ -1,11 +1,11 @@
 <template>
-  <div class="input-box"> 
+  <div class="input-box">
     <input type="text" v-model="value" @keydown.enter="push_a_list_item" />
   </div>
 </template>
 
 <script>
-import { defineComponent, ref } from "vue";
+import { defineComponent, ref, onMounted } from "vue";
 
 export default defineComponent({
   name: "navHeader",
@@ -17,8 +17,13 @@ export default defineComponent({
       // 把输入框的内容传递给父组件
       console.log(value.value);
       ctx.emit("add", value.value);
-      value.value = ''
+      value.value = "";
     };
+
+    onMounted(() => {
+      // 组件挂载的过程
+      // 数据 dom...
+    });
 
     return {
       value,

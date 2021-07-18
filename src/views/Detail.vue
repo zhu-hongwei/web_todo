@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>this is Detail components</h1>
-    <child :father="father" @sendToFather="sendToFather"></child>
+    <child :father_msg="father_msg" @sendToFather="sendToFather"></child>
   </div>
 </template>
 
@@ -16,13 +16,13 @@ export default defineComponent({
   },
 
   setup() {
-    let father = ref("father");
+    let father_msg = ref("这是父组件的数据");
     let sendToFather = (val) => {
       console.log(val);
     };
 
     return {
-      father,
+      father_msg,
       sendToFather,
     };
   },
