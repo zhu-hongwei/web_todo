@@ -24,6 +24,7 @@ export default defineComponent({
     },
   },
   setup(props, ctx) {
+    // 子传父 ctx.emit 分发事件
     console.log(props, props.father_msg);
 
     let childMsg = ref("我是子组件的数据");

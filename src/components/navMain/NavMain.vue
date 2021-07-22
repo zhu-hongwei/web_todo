@@ -1,5 +1,6 @@
 <template>
   <div class="list">
+    <!-- v-if v-for 不要写在同一个 div 上       v-if 写在外面的元素上 -->
     <div
       class="list-item"
       :class="{ list_item_done: item.done }"
@@ -30,7 +31,6 @@ import { defineComponent, ref } from "vue";
 
 export default defineComponent({
   name: "navMain",
-
   props: {
     list: {
       type: Array,
@@ -38,7 +38,7 @@ export default defineComponent({
     },
   },
 
-  // 专门用来放分发事件的属性名字
+  // 专门用来放分发事件的 属性名字
   emits: ["del", "tapListItem"],
 
   setup(props, ctx) {
@@ -50,7 +50,7 @@ export default defineComponent({
       ctx.emit("tapListItem", item, index);
     };
 
-    // 删除任务
+    // 删除任务 ( 把要分发的东西 )
     let del = (item, index) => {
       console.log(item, index);
       ctx.emit("del", index);
@@ -119,7 +119,6 @@ export default defineComponent({
       background-color: #fff;
     }
   }
-
 }
 
 .list-item > span {

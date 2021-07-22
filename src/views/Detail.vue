@@ -16,6 +16,7 @@ export default defineComponent({
   },
 
   setup() {
+    // 父传给子 动态绑定属性的方式 子组件 props 里接收
     let father_msg = ref("这是父组件的数据");
     let sendToFather = (val) => {
       console.log(val);

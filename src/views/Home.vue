@@ -17,8 +17,6 @@ import NavFooter from "@/components/navFooter/NavFooter";
 import { defineComponent, ref, computed, onMounted, onUnmounted } from "vue";
 import { useStore } from "vuex";
 import { useRouter, useRoute } from "vue-router";
-// import { useStore } from "vuex";
-// import { useRouter, useRoute } from "vue-router";
 
 export default defineComponent({
   // 组件名称
@@ -43,16 +41,10 @@ export default defineComponent({
       // 数据初始化的操作：接受路由传递参数
     });
 
-    onUnmounted(()=>{
+    onUnmounted(() => {
       // 组件卸载时的生命周期
       // 清除定时器 清除闭包函数...
-      console.log('Home onUnmounted');
-    })
-
-    let store = useStore();
-    console.log("Home store", store);
-    let list = computed(() => {
-      return store.state.list;
+      console.log("Home onUnmounted");
     });
 
     // router 是全局路由对象
@@ -63,8 +55,15 @@ export default defineComponent({
     let route = useRoute();
     console.log("Home route", route);
 
+    let store = useStore();
+    console.log("Home store", store);
     let value = ref("");
+    // 拿到 store 里的数据
+    let list = computed(() => {
+      return store.state.list;
+    });
 
+    // 添加一条
     let add = (val) => {
       value.value = val;
       console.log(val);
@@ -75,8 +74,10 @@ export default defineComponent({
       });
     };
 
+    // 删除任务
     let del = (val) => {
       console.log(val);
+      // 调用删除的 mutation
       store.commit("delOneTodo", val);
     };
 

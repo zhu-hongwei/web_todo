@@ -27,7 +27,18 @@ export default createStore({
     // 添加一条
     addOneTodo(state, payload) {
       console.log('store index.js addOneTodo 新增一条', state, payload);
-      state.list.push(payload)
+      state.list.unshift(payload)
+
+      // 有重复的 todo 阻止添加
+      let flag = true
+      if (true) {
+        list.value.map(item => {
+          if (item.title === value.value) {
+            flag = false
+            alert('todo 已存在')
+          }
+        })
+      }
     },
 
     // 删除一条
@@ -38,7 +49,7 @@ export default createStore({
 
     tapListItem(state, payload) {
       console.log('store index.js tapListItem 排序？', state, payload);
-      
+
       payload.done = !(payload.done)
       // return
       // state.list[payload].done = !(state.list[payload].done)
@@ -58,8 +69,8 @@ export default createStore({
   // 第一个参数是 store 第二个参数是修改的值
   actions: {
     asyncSetName(store, params) {
-      setTimeout(()=>{
-        
+      setTimeout(() => {
+
         // commit 是提交 mutation 调用 mutation 的方法
         store.commit('setName', params)
       }, 3000)

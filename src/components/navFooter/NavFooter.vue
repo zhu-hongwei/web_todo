@@ -20,7 +20,7 @@ export default defineComponent({
   },
 
   setup(props, ctx) {
-    //
+    // 已完成 计算属性
     let done = computed(() => {
       // 过滤已完成的
       let arr = props.list.filter((item) => {
